@@ -1,0 +1,4 @@
+Django==2.1.7
+django-colorfield==0.1.15
+Pillow==6.0.0
+pytz==2018.9

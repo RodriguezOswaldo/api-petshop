@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Client, ProductCategory, PetCategory, Product, Pet
+
+from .forms import ClientForm
+from .models import Client, ProductCategory, PetCategory, Product, Pet, Order, OrderProduct
 
 # Register your models here.
 
@@ -14,6 +16,7 @@ class ClientAdmin(admin.ModelAdmin):
         'address_1',
         'address_2'
     ]
+    form = ClientForm
 
 
 @admin.register(ProductCategory)
@@ -62,3 +65,22 @@ class ProductAdmin(admin.ModelAdmin):
         'category'
     ]
 
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'client',
+        'created',
+        'shipped'
+    ]
+
+
+@admin.register(OrderProduct)
+class OrderProductAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'pet',
+        'product',
+        'quantity'
+    ]

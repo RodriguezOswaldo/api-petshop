@@ -90,7 +90,47 @@ class Product(Item):
         verbose_name_plural = 'Products'
 
 
+class Order(models.Model):
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE
+    )
+    created = models.DateTimeField(
+        auto_now_add=True
+    )
+    shipped = models.BooleanField(
+        default=False
+    )
 
+    class Meta:
+        verbose_name ='Order'
+        verbose_name_plural = 'Orders'
+
+
+class OrderProduct(models.Model):
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE
+    )
+    pet = models.ForeignKey(
+        Pet,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    quantity = models.PositiveIntegerField(
+        default=0
+    )
+
+    class Meta:
+        verbose_name = 'Order Product'
+        verbose_name_plural = 'Order Products'
 
 
 
